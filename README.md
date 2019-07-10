@@ -26,12 +26,16 @@ pip install --no-index --find-links=.\pack -r requirements.txt  #windows 64位
 pip install -r requirements.txt                                 #其他平台
 ```
 
-asyncio.Semaphore()值最好设置为较小量(不超过100)，以防网站崩溃。
+asyncio.Semaphore()值最好设置为较小量(不超过100)，以防网站崩溃。  
+经过测试，并发量太大会导致出现验证码页面，会爬取失败，每秒5个页面是一个安全的阈值。
 ``` python
-sem = asyncio.Semaphore(60)
+sem = asyncio.Semaphore(5)
 ```
 
 ## Run
 ``` bash
 python stats_gov_2.py
 ```
+
+China_Province_2018 文件夹中的csv_201907091937.tar.gz是2019年7月9号爬取的数据。
+
